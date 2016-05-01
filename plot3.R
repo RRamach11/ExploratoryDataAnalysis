@@ -11,12 +11,11 @@ NEI <- readRDS("summarySCC_PM25.rds")
 SCC <- readRDS("Source_Classification_Code.rds")
 
 # Here I am subsetting data related to Baltimore City and 
-# ignoring data that falls outside of years 1999,2002,205, and 2008
+# ignoring data that falls outside of years 1999,2002,2005, and 2008
 BaltimoreCity <- subset(NEI, fips=='24510')
 BaltimoreCity$year <- factor(BaltimoreCity$year, levels=c('1999', '2002', '2005', '2008'))
 
 # I am generating graph using ggplot and storing in PNG format, calling it 'plot3.png' 
-
 png(filename='C:/Users/Ravi/Documents/R/Exploratory Data Analysis/plot3.png', width=800, height=500, units='px')
 
 ggplot(data=BaltimoreCity, aes(x=year, y=log(Emissions))) + facet_grid(. ~ type) + guides(fill=F) +
